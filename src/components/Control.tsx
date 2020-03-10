@@ -4,15 +4,15 @@ class Control extends Component<{onChangeMode:Function}> {
       console.log('Subject render');
       return (
         <ul>
-          <li><a href="/create" onClick={function(this:any,e:any){
+          <li><a href="/create" onClick={function(this:any,e:React.MouseEvent){
             e.preventDefault();
             this.props.onChangeMode('create');
           }.bind(this)}>create</a></li>
-          <li><a href="/update" onClick={function(this:any,e:any){
+          <li><a href="/update" onClick={function(this:any,e:React.MouseEvent){
             e.preventDefault();
             this.props.onChangeMode('update');
           }.bind(this)}>update</a></li>
-          <li><input  onClick={function(this:any,e:any){
+          <li><input  onClick={function(this:any,e:React.MouseEvent){
             e.preventDefault();
             this.props.onChangeMode('delete');
           }.bind(this)} type="button" value="delete"></input></li>

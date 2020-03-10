@@ -4,7 +4,7 @@ class Subject extends Component<{title:string,sub:string,onChangePage:Function}>
       console.log('Subject render');
       return (
         <header>
-            <h1><a href="/" onClick={function(this:any,e:any){
+            <h1><a href="/" onClick={function(this:any,e:React.MouseEvent){
               e.preventDefault();
               this.props.onChangePage();
             }.bind(this)}>{this.props.title}</a></h1>
