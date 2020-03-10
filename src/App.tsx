@@ -11,7 +11,7 @@ class App extends Component<{},{subject:any, contents:Array<any>, mode:string, w
   constructor(props:JSX.Element){
     super(props);
     this.state = {
-      mode:'read',
+      mode:'create',
       selected_content_id:2,
       subject:{title:'WEB', sub:'World Wide Web!'},
       welcome:{title:'Welcome', desc:'Hello, React!!'},
