@@ -8,8 +8,10 @@ import './App.css';
 
 
 class App extends Component<{},{subject:any, contents:Array<any>, mode:string, welcome:any, selected_content_id:number}> {
+  max_content_id:number;
   constructor(props:JSX.Element){
     super(props);
+    this.max_content_id = 3;
     this.state = {
       mode:'create',
       selected_content_id:2,
@@ -42,8 +44,18 @@ class App extends Component<{},{subject:any, contents:Array<any>, mode:string, w
       }
       _article = <ReadContent title={_title} desc={_desc}></ReadContent>
     } else  if(this.state.mode === 'create'){
-      _article = <CreateContent onSubmit={function(_title:any, _desc:any){
+      _article = <CreateContent onSubmit={function(this:any,_title:any, _desc:any){
         // add content to this.state.contents
+        this.max_content_id = this.max_content_id+1;
+        // this.state.contents.push(
+        //   {id:this.max_content_id, title:_title, desc:_desc}
+        // );
+        var _contents = this.state.contents.concat(
+          {id:this.max_content_id, title:_title, desc:_desc}
+        )
+        this.setState({
+          contents:_contents
+        });
         console.log(_title, _desc);
       }.bind(this)}></CreateContent>
     }
