@@ -42,7 +42,10 @@ class App extends Component<{},{subject:any, contents:Array<any>, mode:string, w
       }
       _article = <ReadContent title={_title} desc={_desc}></ReadContent>
     } else  if(this.state.mode === 'create'){
-      _article = <CreateContent></CreateContent>
+      _article = <CreateContent onSubmit={function(_title:any, _desc:any){
+        // add content to this.state.contents
+        console.log(_title, _desc);
+      }.bind(this)}></CreateContent>
     }
     return (
     <div className="App">

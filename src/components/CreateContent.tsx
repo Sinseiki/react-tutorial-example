@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 
-class CreateContent extends Component{
+class CreateContent extends Component<{onSubmit:Function}>{
     render(){
       console.log('Content render');
       return (
         <article>
             <h2>Create</h2>
             <form action="/create_process" method="post"
-              onSubmit={function(e:React.FormEvent){
+              onSubmit={function(this:any,e:any){
                 e.preventDefault();
+                this.props.onSubmit(
+                    e.target.title.value,
+                    e.target.desc.value
+                  );
                 alert('Submit!!!!!');
               }.bind(this)}
             >
