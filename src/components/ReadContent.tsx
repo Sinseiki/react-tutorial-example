@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Content extends Component<{title:string,desc:string}>{
+class ReadContent extends Component<{title:string,desc:string}>{
     render(){
       console.log('Content render');
       return (
@@ -12,4 +12,4 @@ class Content extends Component<{title:string,desc:string}>{
     }
   }
 
-export default Content;
+export default ReadContent; 
