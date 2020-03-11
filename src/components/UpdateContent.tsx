@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 
-class UpdateContent extends Component<{data:any, onSubmit:Function},{title:string,desc:string}>{
+class UpdateContent extends Component<{data:any, onSubmit:Function},{title:string,desc:string,id:string}>{
     constructor(props:any){
         super(props);
         this.state = {
+          id:this.props.data.id,
           title:this.props.data.title,
           desc:this.props.data.desc
         }
@@ -19,14 +20,16 @@ class UpdateContent extends Component<{data:any, onSubmit:Function},{title:strin
         <article>
             <h2>Update</h2>
             <form action="/create_process" method="post"
-              onSubmit={function(this:any,e:any){
+              onSubmit={function(this:any,e:React.FormEvent){
                 e.preventDefault();
                 this.props.onSubmit(
-                  e.target.title.value,
-                  e.target.desc.value
+                    this.state.id,
+                    this.state.title,
+                    this.state.desc
                 );
               }.bind(this)}
             >
+              <input type="hidden" name="id" value={this.state.id}></input>
               <p>
               <input 
                   type="text" 

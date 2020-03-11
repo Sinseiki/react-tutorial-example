@@ -47,35 +47,33 @@ class App extends Component<{},{subject:any, contents:Array<any>, mode:string, w
         _article = <ReadContent title={_content.title} desc={_content.desc}></ReadContent>
       } else  if(this.state.mode === 'create'){
       _article = <CreateContent onSubmit={function(this:any,_title:string, _desc:string){
-        // add content to this.state.contents
         this.max_content_id = this.max_content_id+1;
-        // this.state.contents.push(
-        //   {id:this.max_content_id, title:_title, desc:_desc}
-        // );
-        var _contents = this.state.contents.concat(
-          {id:this.max_content_id, title:_title, desc:_desc}
-        )
+        var _contents = Array.from(this.state.contents);
+        _contents.push({id:this.max_content_id, title:_title, desc:_desc});
         this.setState({
-          contents:_contents
+          contents:_contents,
+          mode:'read',
+          selected_content_id:this.max_content_id
         });
-        console.log(_title, _desc);
       }.bind(this)}></CreateContent>
       } else  if(this.state.mode === 'update'){
         _content = this.getReadContent();
-        _article = <UpdateContent data={_content} onSubmit={function(this:any, _title:any, _desc:any){
-        // add content to this.state.contents
-        this.max_content_id = this.max_content_id+1;
-        // this.state.contents.push(
-        //   {id:this.max_content_id, title:_title, desc:_desc}
-        // );
-        var _contents = this.state.contents.concat(
-          {id:this.max_content_id, title:_title, desc:_desc}
-        )
-        this.setState({
-          contents:_contents
-        });
-        console.log(_title, _desc);
-      }.bind(this)}></UpdateContent>
+        _article = <UpdateContent data={_content} onSubmit={
+          function(this:any, _id:string, _title:string, _desc:string){
+            var _contents:Array<any> = Array.from(this.state.contents);
+            var i = 0;
+            while(i < _contents.length){
+              if(_contents[i].id === _id) {
+                _contents[i] = {id:_id, title:_title, desc:_desc};
+                break;
+              }
+              i = i + 1;
+            }
+            this.setState({
+              contents:_contents,
+              mode:'read'
+            });
+          }.bind(this)}></UpdateContent>
     }
     return _article;
   }
