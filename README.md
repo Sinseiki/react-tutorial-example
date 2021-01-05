@@ -3,6 +3,8 @@
 본 저장소는 egoing 님의 생활코딩 React 수업의 예제 파일을
 타입스크립트로 변환하여 담고 있는 저장소입니다. 
 
+빌드 된 모습 보기 - https://sinseiki.github.io/react-tutorial-example-typescript/
+
 #수업보기
 
 자바스크립트로 된 전체수업은 아래 페이지에 정리되어 있습니다.
